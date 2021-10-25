@@ -1,6 +1,10 @@
 {
-    "train_pct": 0.75,
-    "n_trees": 100,
-    "depth": 5,
-    "outpath": "data/out/model.pkl"
+    "no_cuda": false,
+    "seed": 42,
+    "epochs": 200,
+    "learning_rate": 0.01,
+    "weight_decay": 5e-4,
+    "hidden_layers": 32,
+    "dropout": 0.5,
+    "type": "GCN"
 }
