@@ -1,10 +1,13 @@
-from model.models import GCN
-from model.utils import accuracy
 import torch
 import torch.optim as optim
 import torch.nn.functional as F
 import numpy as np
 import time
+
+import sys
+sys.path.insert(0, 'src/model')
+from models import GCN
+from utils import accuracy
 
 def train_test(A, X, y, idx_train, idx_val, idx_test, 
     no_cuda, seed, epochs, learning_rate, weight_decay, hidden_layers, dropout, type):

@@ -2,16 +2,19 @@ import pandas as pd
 import networkx as nx
 import torch
 import numpy as np
-from model.utils import encode_onehot 
-from model.utils import frac_mat_power 
+import os
+
+import sys
+sys.path.insert(0, 'src/model')
+from utils import encode_onehot, frac_mat_power
 
 def load_data(path, dataset, train=200, val=300, test=1000):
     """Load citation network dataset (cora only for now)"""
     print('Loading {} dataset...'.format(dataset))
     
     # Load data
-    content = pd.read_csv('{}{}.content'.format(path, dataset), sep='\t', header=None)
-    cites = pd.read_csv('{}{}.cites'.format(path, dataset), sep='\t', header=None)
+    content = pd.read_csv(os.path.join(os.path.dirname(__file__), '{}{}.content'.format(path, dataset)), sep='\t', header=None)
+    cites = pd.read_csv(os.path.join(os.path.dirname(__file__), '{}{}.cites'.format(path, dataset)), sep='\t', header=None)
     
     # Construct graph
     G = nx.Graph(name = 'G')

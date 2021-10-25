@@ -4,13 +4,13 @@ import sys
 import json
 
 sys.path.insert(0, 'src/data')
-sys.path.insert(0, 'src/analysis')
+# sys.path.insert(0, 'src/analysis')
 sys.path.insert(0, 'src/features')
 sys.path.insert(0, 'src/model')
 
-from features.build_features import load_data
+from build_features import load_data
 # from analysis import compute_aggregates
-from model.train import train_test
+from train import train_test
 
 
 def main(targets):
