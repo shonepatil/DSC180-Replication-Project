@@ -27,7 +27,7 @@ class FCN(nn.Module):
         self.fc2 = nn.Linear(nhid, nclass)
         self.dropout = dropout
 
-    def forward(self, x):
+    def forward(self, x, adj):
         x = F.relu(self.fc1(x))
         x = F.dropout(x, self.dropout, training=self.training)
         x = self.fc2(x)
