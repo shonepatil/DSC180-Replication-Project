@@ -6,11 +6,11 @@ import time
 
 import sys
 sys.path.insert(0, 'src/model')
-from models import GCN
+from models import GCN, FCN
 from utils import accuracy
 
 def train_test(A, X, y, idx_train, idx_val, idx_test, 
-    no_cuda, seed, epochs, learning_rate, weight_decay, hidden_layers, dropout, type):
+    no_cuda, seed, epochs, learning_rate, weight_decay, hidden_units, dropout, type):
 
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -21,12 +21,20 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
     #  use gpu if available
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # create a model from GCN class
-    # load it to the specified device, either gpu or cpu
-    model = GCN(nfeat=X.shape[1],
-                nhid=hidden_layers,
-                nclass=y.max().item() + 1,
-                dropout=dropout).to(device)
+    if type == "GCN":
+        # create a model from GCN class
+        # load it to the specified device, either gpu or cpu
+        model = GCN(nfeat=X.shape[1],
+                    nhid=hidden_units,
+                    nclass=y.max().item() + 1,
+                    dropout=dropout).to(device)
+    elif type == "FCN":
+        # create a model from FCN class
+        # load it to the specified device, either gpu or cpu
+        model = FCN(nfeat=X.shape[1],
+                    nhid=hidden_units,
+                    nclass=y.max().item() + 1,
+                    dropout=dropout).to(device)
 
     # create an optimizer object
     # Adam optimizer with learning rate 0.01

@@ -18,3 +18,17 @@ class GCN(nn.Module):
         x = F.dropout(x, self.dropout, training=self.training)
         x = self.gc2(x, adj)
         return F.log_softmax(x, dim=1)
+
+class FCN(nn.Module):
+    def __init__(self, nfeat, nhid, nclass, dropout):
+        super(FCN, self).__init__()
+
+        self.fc1 = nn.Linear(nfeat, nhid)
+        self.fc2 = nn.Linear(nhid, nclass)
+        self.dropout = dropout
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        x = F.dropout(x, self.dropout, training=self.training)
+        x = self.fc2(x)
+        return F.log_softmax(x, dim=1)
