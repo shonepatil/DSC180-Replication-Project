@@ -1,7 +1,7 @@
 {
     "path": "../data/twitch/",
     "dataset": "musae_ENGB_",
-    "train": 200,
-    "val": 300,
-    "test": 1000
+    "train": 1000,
+    "val": 2000,
+    "test": 3000
 }
