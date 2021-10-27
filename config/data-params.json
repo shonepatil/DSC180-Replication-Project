@@ -1,6 +1,6 @@
 {
-    "path": "../data/cora/",
-    "dataset": "cora",
+    "path": "../data/twitch/",
+    "dataset": "musae_ENGB_",
     "train": 200,
     "val": 300,
     "test": 1000
