@@ -1,8 +1,10 @@
+from operator import xor
 import pandas as pd
 import networkx as nx
 import torch
 import numpy as np
 import os
+from sklearn.preprocessing import normalize
 
 import sys
 sys.path.insert(0, 'src/model')
@@ -45,7 +47,10 @@ def load_data(path, dataset, train=200, val=300, test=1000):
     D_half_norm = frac_mat_power(D, -0.5) #calculate D to the power of -0.5
     A = D_half_norm.mm(A_hat).mm(D_half_norm)
 
+    # Normalize X
+    X = normalize(X, axis=0, norm='max')
     X = torch.FloatTensor(X)
+
     y = torch.LongTensor(np.where(y)[1])
 
     idx_train = torch.LongTensor(idx_train)
