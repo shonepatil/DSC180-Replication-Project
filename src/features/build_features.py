@@ -9,7 +9,7 @@ sys.path.insert(0, 'src/model')
 from utils import encode_onehot, frac_mat_power
 
 def load_data(path, dataset, train=200, val=300, test=1000):
-    """Load citation network dataset (cora only for now)"""
+    """Load network dataset"""
     print('Loading {} dataset...'.format(dataset))
     
     # Load data
@@ -32,8 +32,8 @@ def load_data(path, dataset, train=200, val=300, test=1000):
     
     #Get the Adjacency Matrix (A) and Node Features Matrix (X) as numpy array
     A = torch.FloatTensor(nx.adjacency_matrix(G).todense())
-    X = content.drop([0, 1434], axis = 1).to_numpy()
-    y = encode_onehot(content[1434].to_numpy())
+    X = content.drop([0, -1], axis = 1).to_numpy()
+    y = encode_onehot(content[-1].to_numpy())
 
     idx_train = range(train)
     idx_val = range(train, train+val)
