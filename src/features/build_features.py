@@ -4,7 +4,7 @@ import networkx as nx
 import torch
 import numpy as np
 import os
-from sklearn.preprocessing import normalize
+from sklearn.preprocessing import StandardScaler
 
 import sys
 sys.path.insert(0, 'src/model')
@@ -47,8 +47,9 @@ def load_data(path, dataset, train, val, test):
     D_half_norm = frac_mat_power(D, -0.5) #calculate D to the power of -0.5
     A = D_half_norm.mm(A_hat).mm(D_half_norm)
 
-    # Normalize X
-    X = normalize(X, axis=0, norm='max')
+    # Standardize X
+    scaler = StandardScaler()
+    X = scaler.fit_transform(X)
     X = torch.FloatTensor(X)
 
     y = torch.LongTensor(np.where(y)[1])
