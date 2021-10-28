@@ -19,7 +19,7 @@ class GCN(nn.Module):
         self.gc1 = GraphConvolution(nhid, nhid)
         self.gc2 = GraphConvolution(nhid, nhid)
         self.fc3 = nn.Linear(nhid, nhid)
-        self.fc4 = nn.Linear(nfeat, nclass)
+        self.fc4 = nn.Linear(nhid, nclass)
         self.dropout = dropout
 
     def forward(self, x, adj):# Add linear layers before and after
