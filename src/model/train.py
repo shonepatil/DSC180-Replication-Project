@@ -60,8 +60,6 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         acc_train = accuracy(output[idx_train], target)
         loss_train.backward()
         optimizer.step()
-        print(list(model.parameters())[0])
-        print(list(model.parameters())[1].requires_grad)
 
         # Evaluate validation set performance separately,
         # deactivates dropout during validation run.
