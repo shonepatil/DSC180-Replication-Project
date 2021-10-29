@@ -26,14 +26,14 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         # load it to the specified device, either gpu or cpu
         model = GCN(nfeat=X.shape[1],
                     nhid=hidden_units,
-                    nclass=y.max().item() + 1,
+                    nclass=y.max().item(),
                     dropout=dropout).to(device)
     elif type == "FCN":
         # create a model from FCN class
         # load it to the specified device, either gpu or cpu
         model = FCN(nfeat=X.shape[1],
                     nhid=hidden_units,
-                    nclass=y.max().item() + 1,
+                    nclass=y.max().item(),
                     dropout=dropout).to(device)
 
     # create an optimizer object
