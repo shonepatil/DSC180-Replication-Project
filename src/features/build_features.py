@@ -27,7 +27,7 @@ def load_data(path, dataset, train, val, test):
 
     # Create edges
     for e in edges.to_numpy():
-        G.add_edge(e[1], e[0])
+        G.add_edge(e[0], e[1])
 
     #See graph info
     print('Graph Info:\n', nx.info(G))
