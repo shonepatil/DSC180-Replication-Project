@@ -27,7 +27,7 @@ class GCN(nn.Module):
         self.fc8 = nn.Linear(nhid, nclass)
         self.dropout = dropout
 
-    def forward(self, x, adj):# Add linear layers before and after
+    def forward(self, x, adj):
         x = self.fc1(x)
         x = self.fc2(F.relu(x))
         x = self.fc3(F.relu(x))
@@ -40,8 +40,7 @@ class GCN(nn.Module):
         x = self.fc6(F.relu(x))
         x = self.fc7(F.relu(x))
         x = self.fc8(F.relu(x))
-        # return torch.sigmoid(x)
-        return torch.log_softmax(x, dim=1)
+        return torch.sigmoid(x)
 
 class FCN(nn.Module):
     def __init__(self, nfeat, nhid, nclass, dropout):
