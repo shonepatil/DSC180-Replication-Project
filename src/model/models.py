@@ -1,4 +1,3 @@
-import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -32,8 +31,7 @@ class GCN(nn.Module):
         x = self.gc2(x, adj)
         x = self.fc3(F.relu(x))
         x = self.fc4(F.relu(x))
-        return torch.sigmoid(x)
-        # return F.log_softmax(x, dim=1)
+        return F.log_softmax(x, dim=1)
 
 class FCN(nn.Module):
     def __init__(self, nfeat, nhid, nclass, dropout):

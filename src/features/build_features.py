@@ -34,7 +34,7 @@ def load_data(path, dataset, train, val, test):
     
     #Get the Adjacency Matrix (A) and Node Features Matrix (X) as numpy array
     A = torch.FloatTensor(nx.adjacency_matrix(G).todense())
-    X = nodes.iloc[:, [1, 3, 4]].to_numpy().astype(float)
+    X = nodes.iloc[:, [1, 3]].to_numpy().astype(float)
     y = encode_onehot(nodes.iloc[:, 2].to_numpy())
 
     idx_train = range(train)
