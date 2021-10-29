@@ -56,7 +56,6 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         optimizer.zero_grad()
         output = model(X, A)
         target = y[idx_train].float()
-        print(output[idx_train].requires_grad)
         loss_train = F.binary_cross_entropy(output[idx_train].cuda(), target.unsqueeze(1).cuda())
         acc_train = accuracy(output[idx_train], target)
         loss_train.backward()
