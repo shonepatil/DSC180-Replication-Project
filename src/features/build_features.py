@@ -5,6 +5,7 @@ import torch
 import numpy as np
 import os
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import normalize
 
 import sys
 sys.path.insert(0, 'src/model')
@@ -48,8 +49,9 @@ def load_data(path, dataset, train, val, test):
     A = D_half_norm.mm(A_hat).mm(D_half_norm)
 
     # Standardize X
-    scaler = StandardScaler()
-    X = scaler.fit_transform(X)
+    # scaler = StandardScaler()
+    # X = scaler.fit_transform(X)
+    X = normalize(X)
     X = torch.FloatTensor(X)
 
     y = torch.LongTensor(np.where(y)[1])
