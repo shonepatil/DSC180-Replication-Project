@@ -73,7 +73,7 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
             'loss_val: {:.4f}'.format(loss_val.item()),
             'acc_val: {:.4f}'.format(acc_val.item()),
             'time: {:.4f}s'.format(time.time() - t),
-            'weights: {:.4f}'.format(str(list(model.parameters())[0].grad)))
+            'weights: {}'.format(str(list(model.parameters())[0].grad)))
 
     def test():
         model.eval()
