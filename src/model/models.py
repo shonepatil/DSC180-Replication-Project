@@ -30,9 +30,9 @@ class GCN(nn.Module):
         x = F.dropout(x, self.dropout, training=self.training)
         x = self.gc2(x, adj)
         x = self.fc3(F.relu(x))
-        x = self.fc4(F.relu(x))
-        return F.sigmoid(x)
-        # return F.log_softmax(x, dim=1)
+        # x = self.fc4(F.relu(x))
+        x = self.fc4(x)
+        return F.log_softmax(x, dim=1)
 
 class FCN(nn.Module):
     def __init__(self, nfeat, nhid, nclass, dropout):
