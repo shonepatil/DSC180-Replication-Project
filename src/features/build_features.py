@@ -63,5 +63,4 @@ def load_data(path, dataset, train, val, test):
     print('\nAdjacency Matrix (A):\n', A)
     print('\nNode Features Matrix (X):\n', X)
     
-    print(y.max().item())
     return A, X, y, idx_train, idx_val, idx_test

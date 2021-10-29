@@ -31,7 +31,8 @@ class GCN(nn.Module):
         x = self.gc2(x, adj)
         x = self.fc3(F.relu(x))
         x = self.fc4(F.relu(x))
-        return F.log_softmax(x, dim=1)
+        # return F.log_softmax(x, dim=1)
+        return F.sigmoid(x)
 
 class FCN(nn.Module):
     def __init__(self, nfeat, nhid, nclass, dropout):
