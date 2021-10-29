@@ -24,18 +24,15 @@ class GCN(nn.Module):
 
     def forward(self, x, adj):# Add linear layers before and after
         x = self.fc1(x)
-        x = F.relu(x)
-        x = self.fc2(x)
-        x = F.relu(x)
-        x = self.gc1(x, adj)
+        x = self.fc2(F.relu(x))
+        x = self.gc1(F.relu(x), adj)
         x = F.relu(x)
         x = F.dropout(x, self.dropout, training=self.training)
         x = self.gc2(x, adj)
-        x = F.relu(x)
-        x = self.fc3(x)
-        x = F.relu(x)
-        x = self.fc4(x)
-        return F.log_softmax(x, dim=1)
+        x = self.fc3(F.relu(x))
+        x = self.fc4(F.relu(x))
+        return F.sigmoid(x)
+        # return F.log_softmax(x, dim=1)
 
 class FCN(nn.Module):
     def __init__(self, nfeat, nhid, nclass, dropout):
