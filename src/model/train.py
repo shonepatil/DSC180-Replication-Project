@@ -55,8 +55,9 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         model.train()
         optimizer.zero_grad()
         output = model(X, A)
-        loss_train = F.binary_cross_entropy(output[idx_train].cuda(), y[idx_train].unsqueeze(1).cuda())
-        acc_train = accuracy(output[idx_train], y[idx_train])
+        target = y[idx_train].float()
+        loss_train = F.binary_cross_entropy(output[idx_train].cuda(), target.unsqueeze(1).cuda())
+        acc_train = accuracy(output[idx_train], target)
         loss_train.backward()
         optimizer.step()
 
@@ -65,8 +66,9 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         model.eval()
         output = model(X, A)
 
-        loss_val = F.binary_cross_entropy(output[idx_val].cuda(), y[idx_val].unsqueeze(1).cuda())
-        acc_val = accuracy(output[idx_val], y[idx_val])
+        target = y[idx_val].float()
+        loss_val = F.binary_cross_entropy(output[idx_val].cuda(), target.unsqueeze(1).cuda())
+        acc_val = accuracy(output[idx_val], target)
         print('Epoch: {:04d}'.format(epoch+1),
             'loss_train: {:.4f}'.format(loss_train.item()),
             'acc_train: {:.4f}'.format(acc_train.item()),
@@ -77,8 +79,9 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
     def test():
         model.eval()
         output = model(X, A)
-        loss_test = F.binary_cross_entropy(output[idx_test].cuda(), y[idx_test].unsqueeze(1).cuda())
-        acc_test = accuracy(output[idx_test], y[idx_test])
+        target = y[idx_test].float()
+        loss_test = F.binary_cross_entropy(output[idx_test].cuda(), target.unsqueeze(1).cuda())
+        acc_test = accuracy(output[idx_test], target)
         print("Test set results:",
             "loss= {:.4f}".format(loss_test.item()),
             "accuracy= {:.4f}".format(acc_test.item()))
