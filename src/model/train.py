@@ -72,7 +72,8 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
             'acc_train: {:.4f}'.format(acc_train.item()),
             'loss_val: {:.4f}'.format(loss_val.item()),
             'acc_val: {:.4f}'.format(acc_val.item()),
-            'time: {:.4f}s'.format(time.time() - t))
+            'time: {:.4f}s'.format(time.time() - t),
+            'weights: {:.4f}'.format(model.fc4.weight.data))
 
     def test():
         model.eval()
