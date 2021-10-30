@@ -56,7 +56,7 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         optimizer.zero_grad()
         output = model(X, A)
         target = y[idx_train]
-        loss_train = F.nll_loss(output[idx_train], target)
+        loss_train = F.cross_entropy(output[idx_train], target)
         acc_train = accuracy(output[idx_train], target)
         loss_train.backward()
         optimizer.step()
@@ -66,7 +66,7 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         model.eval()
         output = model(X, A)
         target = y[idx_val]
-        loss_val = F.nll_loss(output[idx_val], target)
+        loss_val = F.cross_entropy(output[idx_val], target)
         acc_val = accuracy(output[idx_val], target)
         print('Epoch: {:04d}'.format(epoch+1),
             'loss_train: {:.4f}'.format(loss_train.item()),
@@ -79,7 +79,7 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         model.eval()
         output = model(X, A)
         target = y[idx_test]
-        loss_test = F.nll_loss(output[idx_test], target)
+        loss_test = F.cross_entropy(output[idx_test], target)
         acc_test = accuracy(output[idx_test], target)
         print("Test set results:",
             "loss= {:.4f}".format(loss_test.item()),

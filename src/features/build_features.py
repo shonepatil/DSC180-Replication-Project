@@ -33,7 +33,7 @@ def load_data(path, dataset, train, val, test):
     print('Graph Info:\n', nx.info(G))
     
     #Get the Adjacency Matrix (A) and Node Features Matrix (X) as numpy array
-    A = torch.FloatTensor(nx.adjacency_matrix(G).todense())
+    A = torch.FloatTensor(nx.adjacency_matrix(G).todense()).cuda()
     X = nodes.iloc[:, [1, 3, 4]].to_numpy().astype(float)
     y = encode_onehot(nodes.iloc[:, 2].to_numpy())
 
@@ -41,7 +41,7 @@ def load_data(path, dataset, train, val, test):
     idx_val = range(train, train+val)
     idx_test = range(train+val, train+val+test)
 
-    I = torch.eye(A.shape[0]) #create Identity Matrix of A
+    I = torch.eye(A.shape[0]).cuda() #create Identity Matrix of A
     A_hat = A + I #add self-loop to A
     D = torch.diag(torch.sum(A_hat, axis=0)) #create Degree Matrix of A
     D_half_norm = frac_mat_power(D, -0.5) #calculate D to the power of -0.5
