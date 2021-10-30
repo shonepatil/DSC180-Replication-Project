@@ -40,7 +40,7 @@ class GCN(nn.Module):
         x = self.fc6(F.relu(x))
         x = self.fc7(F.relu(x))
         x = self.fc8(F.relu(x))
-        return torch.sigmoid(x)
+        return x#torch.sigmoid(x)
 
 class FCN(nn.Module):
     def __init__(self, nfeat, nhid, nclass, dropout):

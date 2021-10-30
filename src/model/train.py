@@ -38,7 +38,7 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
 
     # create an optimizer object
     # Adam optimizer with learning rate 0.01
-    optimizer = optim.Adam(model.parameters(), lr=learning_rate)#, weight_decay=weight_decay)
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
 
     if cuda:
         model.cuda()
@@ -57,6 +57,7 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         output = model(X, A)
         target = y[idx_train].float()
         loss_train = F.binary_cross_entropy(output[idx_train].cuda(), target.unsqueeze(1).cuda())
+        print(sum(output[idx_train]))
         acc_train = accuracy(output[idx_train], target)
         loss_train.backward()
         optimizer.step()
