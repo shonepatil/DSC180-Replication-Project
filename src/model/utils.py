@@ -25,3 +25,9 @@ def accuracy(output, labels):
     correct = preds.eq(labels).double()
     correct = correct.sum()
     return correct / len(labels)
+
+def accuracy_binary(output, labels):
+    preds = round(output)
+    correct = preds.eq(labels).double()
+    correct = correct.sum()
+    return correct / len(labels)
