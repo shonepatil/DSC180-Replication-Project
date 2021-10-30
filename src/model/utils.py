@@ -27,7 +27,7 @@ def accuracy(output, labels):
     return correct / len(labels)
 
 def accuracy_binary(output, labels):
-    preds = round(output)
+    preds = torch.round(output)
     correct = preds.eq(labels).double()
     correct = correct.sum()
     return correct / len(labels)

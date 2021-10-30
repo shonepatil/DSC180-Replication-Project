@@ -56,8 +56,6 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         optimizer.zero_grad()
         output = model(X, A)
         target = y[idx_train].float()
-        print(output[idx_train])
-        print(target)
         loss_train = F.binary_cross_entropy(output[idx_train].cuda(), target.unsqueeze(1).cuda())
         acc_train = accuracy_binary(output[idx_train], target)
         loss_train.backward()
@@ -67,7 +65,6 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         # deactivates dropout during validation run.
         model.eval()
         output = model(X, A)
-
         target = y[idx_val].float()
         loss_val = F.binary_cross_entropy(output[idx_val].cuda(), target.unsqueeze(1).cuda())
         acc_val = accuracy_binary(output[idx_val], target)
@@ -92,7 +89,6 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
     t_total = time.time()
     for epoch in range(epochs):
         train(epoch)
-        break
     print("Optimization Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
