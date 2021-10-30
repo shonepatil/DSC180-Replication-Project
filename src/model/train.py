@@ -38,7 +38,7 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
 
     # create an optimizer object
     # Adam optimizer with learning rate 0.01
-    optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)#, weight_decay=weight_decay)
 
     if cuda:
         model.cuda()
