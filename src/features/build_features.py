@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 
 import sys
 sys.path.insert(0, 'src/model')
-from model.utils import encode_onehot, frac_mat_power
+from src.model.utils import encode_onehot, frac_mat_power
 
 def load_data(path, dataset, train, val, test):
     """Load network dataset"""
