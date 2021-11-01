@@ -38,7 +38,7 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
 
     # create an optimizer object
     # Adam optimizer with learning rate 0.01
-    optimizer = optim.Adam(model.parameters(), lr=learning_rate)#, weight_decay=weight_decay)
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
 
     if cuda:
         model.cuda()
@@ -68,12 +68,13 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         target = y[idx_val]
         loss_val = F.cross_entropy(output[idx_val], target)
         acc_val = accuracy(output[idx_val], target)
-        print('Epoch: {:04d}'.format(epoch+1),
-            'loss_train: {:.4f}'.format(loss_train.item()),
-            'acc_train: {:.4f}'.format(acc_train.item()),
-            'loss_val: {:.4f}'.format(loss_val.item()),
-            'acc_val: {:.4f}'.format(acc_val.item()),
-            'time: {:.4f}s'.format(time.time() - t))
+        if epoch % 10 == 0:
+            print('Epoch: {:04d}'.format(epoch+1),
+                'loss_train: {:.4f}'.format(loss_train.item()),
+                'acc_train: {:.4f}'.format(acc_train.item()),
+                'loss_val: {:.4f}'.format(loss_val.item()),
+                'acc_val: {:.4f}'.format(acc_val.item()),
+                'time: {:.4f}s'.format(time.time() - t))
 
     def test():
         model.eval()
