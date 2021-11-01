@@ -41,9 +41,7 @@ def load_data(path, dataset, train, val, test, include_ad_hoc_feat=False):
     if include_ad_hoc_feat:
         degree = np.array([x[1] for x in list(G.degree)])
         closeness_centr = np.array([x[1] for x in nx.closeness_centrality(G).items()])
-        betweenness_centr = np.array([x[1] for x in nx.betweenness_centrality
-                                      (G, normalized=True, endpoints=False).items()])
-        X = np.c_[X, degree, closeness_centr, betweenness_centr].astype(float)
+        X = np.c_[X, degree, closeness_centr].astype(float)
 
     idx_train = range(train)
     idx_val = range(train, train+val)
