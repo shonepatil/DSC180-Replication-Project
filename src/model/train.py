@@ -6,8 +6,8 @@ import time
 
 import sys
 sys.path.insert(0, 'src/model')
-from models import GCN, FCN
-from utils import accuracy
+from model.models import GCN, FCN
+from model.utils import accuracy
 
 def train_test(A, X, y, idx_train, idx_val, idx_test, 
     no_cuda, seed, epochs, learning_rate, weight_decay, hidden_units, dropout, type):
