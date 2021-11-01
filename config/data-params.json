@@ -3,5 +3,6 @@
     "dataset": "musae_ENGB_",
     "train": 1000,
     "val": 2000,
-    "test": 3000
+    "test": 3000,
+    "include_ad_hoc_feat": false
 }

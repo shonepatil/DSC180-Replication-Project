@@ -10,7 +10,7 @@ import sys
 sys.path.insert(0, 'src/model')
 from src.model.utils import encode_onehot, frac_mat_power
 
-def load_data(path, dataset, train, val, test):
+def load_data(path, dataset, train, val, test, include_ad_hoc_feat=False):
     """Load network dataset"""
     print('Loading {} dataset...'.format(dataset))
     
