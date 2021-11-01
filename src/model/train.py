@@ -68,7 +68,7 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
         target = y[idx_val]
         loss_val = F.cross_entropy(output[idx_val], target)
         acc_val = accuracy(output[idx_val], target)
-        if epoch % 10 == 0:
+        if (epoch+1) % 10 == 0:
             print('Epoch: {:04d}'.format(epoch+1),
                 'loss_train: {:.4f}'.format(loss_train.item()),
                 'acc_train: {:.4f}'.format(acc_train.item()),
