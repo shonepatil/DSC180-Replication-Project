@@ -13,10 +13,11 @@ def train_test(A, X, y, idx_train, idx_val, idx_test,
     no_cuda, seed, epochs, learning_rate, weight_decay, hidden_units, dropout, type):
 
     np.random.seed(seed)
-    torch.manual_seed(seed)
     cuda = not no_cuda and torch.cuda.is_available()
     if cuda:
         torch.cuda.manual_seed(seed)
+    else:
+        torch.manual_seed(seed)
 
     #  use gpu if available
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
