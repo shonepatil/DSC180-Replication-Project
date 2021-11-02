@@ -1,8 +1,8 @@
 {
-    "path": "../data/twitch/",
-    "dataset": "musae_ENGB_",
-    "train": 1000,
-    "val": 2000,
-    "test": 3000,
+    "path": "../data/cora/",
+    "dataset": "cora",
+    "train": 100,
+    "val": 200,
+    "test": 300,
     "include_ad_hoc_feat": false
 }
