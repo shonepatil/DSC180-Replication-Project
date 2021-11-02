@@ -55,7 +55,7 @@ def load_data(path, dataset, train, val, test, include_ad_hoc_feat=False):
         # Embed nodes
         mod = node2vec.fit(window=10, min_count=1, batch_words=4)
         emb = np.array(mod.wv.vectors)
-        X = emb
+        X = np.c_[X, emb].astype(float)
 
     I = torch.eye(A.shape[0]) #create Identity Matrix of A
     A_hat = A + I #add self-loop to A
