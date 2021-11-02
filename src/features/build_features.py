@@ -18,8 +18,8 @@ def load_data(path, dataset, train, val, test, include_ad_hoc_feat=False):
     # Load data
     # nodes = pd.read_csv(os.path.join(os.path.dirname(__file__), '{}{}target.csv'.format(path, dataset)), sep=',')
     # edges = pd.read_csv(os.path.join(os.path.dirname(__file__), '{}{}edges.csv'.format(path, dataset)), sep=',')
-    nodes = pd.read_csv(os.path.join(os.path.dirname(__file__), '{}{}.content'.format(path, dataset)), sep='\t', header=None),
-    edges = pd.read_csv(os.path.join(os.path.dirname(__file__), '{}{}.cites'.format(path, dataset)), sep='\t', header=None)
+    nodes = pd.read_csv('{}{}.content'.format(path, dataset), sep='\t', header=None)
+    edges = pd.read_csv('{}{}.cites'.format(path, dataset), sep='\t', header=None)
     
     # Construct graph
     G = nx.Graph(name = 'G')
