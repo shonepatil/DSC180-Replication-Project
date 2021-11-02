@@ -5,6 +5,7 @@ import torch
 import numpy as np
 import os
 from sklearn.preprocessing import StandardScaler
+from node2vec import Node2Vec
 
 import sys
 sys.path.insert(0, 'src/model')
@@ -46,6 +47,15 @@ def load_data(path, dataset, train, val, test, include_ad_hoc_feat=False):
     idx_train = range(train)
     idx_val = range(train, train+val)
     idx_test = range(train+val, train+val+test)
+
+    # node2vec setup
+    # TODO:  REMOVE THIS
+    if True:
+        node2vec = Node2Vec(G, dimensions=64, walk_length=30, num_walks=200, workers=4)
+        # Embed nodes
+        mod = node2vec.fit(window=10, min_count=1, batch_words=4)
+        emb = np.array(mod.wv.vectors)
+        X = emb
 
     I = torch.eye(A.shape[0]) #create Identity Matrix of A
     A_hat = A + I #add self-loop to A
