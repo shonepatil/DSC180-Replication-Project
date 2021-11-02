@@ -28,18 +28,19 @@ class GCN(nn.Module):
         self.dropout = dropout
 
     def forward(self, x, adj):
-        x = self.fc1(x)
-        x = self.fc2(F.relu(x))
-        x = self.fc3(F.relu(x))
-        x = self.fc4(F.relu(x))
-        x = self.gc1(F.relu(x), adj)
+        # x = self.fc1(x)
+        # x = self.fc2(F.relu(x))
+        # x = self.fc3(F.relu(x))
+        # x = self.fc4(F.relu(x))
+        # x = self.gc1(F.relu(x), adj)
+        x = self.gc1(x, adj)
         x = F.relu(x)
         x = F.dropout(x, self.dropout, training=self.training)
         x = self.gc2(x, adj)
-        x = self.fc5(F.relu(x))
-        x = self.fc6(F.relu(x))
-        x = self.fc7(F.relu(x))
-        x = self.fc8(F.relu(x))
+        # x = self.fc5(F.relu(x))
+        # x = self.fc6(F.relu(x))
+        # x = self.fc7(F.relu(x))
+        # x = self.fc8(F.relu(x))
         return torch.log_softmax(x, dim=1)
 
 class FCN(nn.Module):
