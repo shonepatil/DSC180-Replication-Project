@@ -39,7 +39,19 @@ def main(targets):
         with open('config/model-params.json') as fh:
             model_cfg = json.load(fh)
 
-        # make the data target
+        # make the model target
+        train_test(A, X, y, idx_train, idx_val, idx_test, **model_cfg)
+
+    if 'test' in targets:
+        with open('config/test-params.json') as fh:
+            data_cfg = json.load(fh)
+        with open('config/model-params.json') as fh:
+            model_cfg = json.load(fh)
+
+        # load test data
+        A, X, y, idx_train, idx_val, idx_test = load_data(**data_cfg)
+
+        # make the model target
         train_test(A, X, y, idx_train, idx_val, idx_test, **model_cfg)
 
     return
