@@ -16,17 +16,12 @@ def load_data(path, dataset, train, val, test, include_ad_hoc_feat=False):
     print('Loading {} dataset...'.format(dataset))
     
     # Load data
-    # nodes = pd.read_csv(os.path.join(os.path.dirname(__file__), '{}{}target.csv'.format(path, dataset)), sep=',')
-    # edges = pd.read_csv(os.path.join(os.path.dirname(__file__), '{}{}edges.csv'.format(path, dataset)), sep=',')
     nodes = pd.read_csv(os.path.join(os.path.dirname(__file__), '{}{}.content'.format(path, dataset)), sep='\t', header=None)
     edges = pd.read_csv(os.path.join(os.path.dirname(__file__), '{}{}.cites'.format(path, dataset)), sep='\t', header=None)
 
     # Construct graph
     G = nx.Graph(name = 'G')
 
-    # # Create nodes
-    # for i in nodes.iloc[:, -1]:
-    #     G.add_node(i, name=i)
     # Create nodes
     for i in nodes.iloc[:, 0]:
         G.add_node(i, name=i)
@@ -40,8 +35,6 @@ def load_data(path, dataset, train, val, test, include_ad_hoc_feat=False):
     
     #Get the Adjacency Matrix (A) and Node Features Matrix (X) as numpy array
     A = torch.FloatTensor(nx.adjacency_matrix(G).todense())
-    # X = nodes.iloc[:, [1, 3, 4]].to_numpy().astype(float)
-    # y = encode_onehot(nodes.iloc[:, 2].to_numpy())
     X = nodes.drop([0, 1434], axis=1).to_numpy().astype(float)
     y = encode_onehot(nodes[1434].to_numpy())
 
