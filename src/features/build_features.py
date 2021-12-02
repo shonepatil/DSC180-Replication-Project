@@ -11,7 +11,7 @@ import sys
 sys.path.insert(0, 'src/model')
 from src.model.utils import encode_onehot, frac_mat_power
 
-def load_data(path, dataset, train, val, test, include_ad_hoc_feat=False):
+def load_data(path, dataset, train, val, test, include_ad_hoc_feat=False, include_node2vec=False):
     """Load network dataset"""
     print('Loading {} dataset...'.format(dataset))
     
@@ -49,8 +49,7 @@ def load_data(path, dataset, train, val, test, include_ad_hoc_feat=False):
     idx_test = range(train+val, train+val+test)
 
     # node2vec setup
-    # TODO:  REMOVE THIS
-    if False:
+    if include_node2vec:
         node2vec = Node2Vec(G, dimensions=64, walk_length=30, num_walks=200, workers=4)
         # Embed nodes
         mod = node2vec.fit(window=10, min_count=1, batch_words=4)
@@ -74,6 +73,8 @@ def load_data(path, dataset, train, val, test, include_ad_hoc_feat=False):
     idx_val = torch.LongTensor(idx_val)
     idx_test = torch.LongTensor(idx_test)
 
+    print('ad_hoc_features included: ', include_ad_hoc_feat)
+    print('node2vec included: ', include_node2vec)
     print('Shape of A: ', A.shape)
     print('\nShape of X: ', X.shape)
     print('\nAdjacency Matrix (A):\n', A)

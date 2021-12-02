@@ -1,4 +1,4 @@
 {
-    "agg_by": "week",
-    "outpath": "data/temp/agg.csv"
+    "path": "../data/cora/",
+    "dataset": "cora"
 }
