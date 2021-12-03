@@ -47,5 +47,9 @@ class FCN(nn.Module):
     def forward(self, x, adj):
         x = F.relu(self.fc1(x))
         x = F.dropout(x, self.dropout, training=self.training)
+        x = self.fc3(x)
+        x = F.dropout(x, self.dropout, training=self.training)
+        x = self.fc4(x)
+        x = F.dropout(x, self.dropout, training=self.training)
         x = self.fc2(x)
         return F.log_softmax(x, dim=1)
