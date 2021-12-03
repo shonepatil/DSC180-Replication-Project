@@ -34,15 +34,15 @@ def compute_aggregates(path, dataset):
     closeness_centr = np.array([x[1] for x in nx.closeness_centrality(G).items()])
     avg_clus_coeff = nx.average_clustering(G)
 
-    # print('\nAverage Degree: ', round(np.mean(degree), 3))
-    # print('Average Closeness Centrality: ', round(np.mean(closeness_centr), 3))
-    # print('Average clustering coefficient: ' + str(avg_clus_coeff))
+    print('\nAverage Degree: ', round(np.mean(degree), 3))
+    print('Average Closeness Centrality: ', round(np.mean(closeness_centr), 3))
+    print('Average clustering coefficient: ' + str(avg_clus_coeff))
 
-    # plt.hist(degree, bins=40, range=(0, 40))
-    # plt.xlabel("Degree")
-    # plt.ylabel("Counts")
-    # plt.title("Degree Distribution")
-    # plt.savefig('src/analysis/graphs/degree_dist.png')
+    plt.hist(degree, bins=40, range=(0, 40))
+    plt.xlabel("Degree")
+    plt.ylabel("Counts")
+    plt.title("Degree Distribution")
+    plt.savefig('src/analysis/graphs/degree_dist.png')
 
     # Label distribution
     y = nodes[1434]
