@@ -39,6 +39,8 @@ class FCN(nn.Module):
         super(FCN, self).__init__()
 
         self.fc1 = nn.Linear(nfeat, nhid)
+        self.fc3 = nn.Linear(nhid, nhid)
+        self.fc4 = nn.Linear(nhid, nhid)
         self.fc2 = nn.Linear(nhid, nclass)
         self.dropout = dropout
 
