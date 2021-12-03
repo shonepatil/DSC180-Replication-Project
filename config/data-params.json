@@ -4,6 +4,6 @@
     "train": 140,
     "val": 300,
     "test": 1000,
-    "include_ad_hoc_feat": false,
+    "include_ad_hoc_feat": true,
     "include_node2vec": false
 }
